@@ -1,6 +1,5 @@
 :root {
   --bar-color: #807816;
-  /* Usa il valore iniettato da Capacitor se c'è, altrimenti env() */
   --sat: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
 }
 
@@ -18,7 +17,6 @@ body {
     flex-direction: column;
 }
 
-/* Rettangolo fisso in alto, alto quanto la status bar */
 #status-fill {
   position: fixed;
   top: 0;
@@ -29,7 +27,6 @@ body {
   z-index: 1000;
 }
 
-/* Il contenuto parte sotto la status bar */
 main {
   padding-top: calc(var(--sat) + 24px);
   padding-left: 24px;
@@ -65,7 +62,6 @@ p {
   background: #1565c0;
 }
 
-/* Pannello debug: testo piccolo, monospazio, leggibile sullo sfondo */
 .debug {
   margin: 0;
   padding: 12px;

@@ -11,7 +11,6 @@ const NAMES = {
 const {SystemBars} = Capacitor.Plugins;
 
 
-// Legge il valore reale di env(safe-area-inset-top)
 function readEnvTop() {
   const probe = document.createElement("div");
   probe.style.cssText =
