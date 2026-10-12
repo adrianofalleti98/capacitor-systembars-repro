@@ -1,0 +1,101 @@
+:root {
+  --bar-color: #807816;
+  /* Usa il valore iniettato da Capacitor se c'è, altrimenti env() */
+  --sat: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #807816;
+   display: flex;
+    flex-direction: column;
+}
+
+/* Rettangolo fisso in alto, alto quanto la status bar */
+#status-fill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--sat);
+  background: var(--bar-color);
+  z-index: 1000;
+}
+
+/* Il contenuto parte sotto la status bar */
+main {
+  padding-top: calc(var(--sat) + 24px);
+  padding-left: 24px;
+  padding-right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+p {
+  margin: 0;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.btn.orange {
+  background: #e05402;
+}
+
+.btn.blue {
+  background: #1565c0;
+}
+.debug {
+    font-size: 2.1rem;
+
+}
+
+
+.barra-bassa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* niente più position: fixed, bottom, left, transform */
+  margin-top: auto;   /* spinge la barra in fondo a main */
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+
+.campo {
+  margin: 0;
+  box-sizing: border-box;
+  width: 200px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.quadratino {
+  width: 40px;
+  height: 40px;
+  background: blue;
+}
+
+
+.btn.white {
+    background: #2e7d32;
+}
+.btn:active {
+  opacity: 0.8;
+}
