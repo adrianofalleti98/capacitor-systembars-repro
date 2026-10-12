@@ -203,6 +203,10 @@ Same 1px difference as Android 15 (truncated by `(int) topPx` in `injectSafeArea
 
 ![Android 17](screenshots/api37.png)
 
-Correct: same as Android 15 on the same device profile. The page is drawn edge-to-edge, `#status-fill` covers the
-status bar including the punch-hole camera area, with the same 1px difference: `env(safe-area-inset-top)` is `55px`,
-`--safe-area-inset-top` is `54px`.
+Correct:
+
+- The page is drawn edge-to-edge, also behind the gesture navigation bar.
+- After tapping **Fill Status bar**, `#status-fill` covers the status bar area (orange), including the punch-hole camera area.
+- Debug panel: `env(safe-area-inset-top) = 55px`, `--safe-area-inset-top = 54px`, `#status-fill height : 54px`.
+
+Same 1px difference as Android 15 (truncated by `(int) topPx` in `injectSafeAreaCSS()`).
