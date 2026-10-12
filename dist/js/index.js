@@ -25,21 +25,17 @@ function debugInfo() {
   const fill = document.getElementById("status-fill");
   const root = getComputedStyle(document.documentElement);
 
-  // Exact value written by Capacitor (SystemBars.java -> injectSafeAreaCSS) on <html> inline style
   const injected = document.documentElement.style.getPropertyValue("--safe-area-inset-top").trim();
   const envTop = readEnvTop();
   const used = root.getPropertyValue("--sat").trim();
-  const source = injected ? "injected by Capacitor" : "env() fallback";
 
   const android = (navigator.userAgent.match(/Android ([\d.]+)/) || [])[1] || "?";
   const webview = (navigator.userAgent.match(/Chrome\/(\d+)/) || [])[1] || "?";
 
   const lines = [
     "STATUS BAR (TOP INSET)",
-    "Injected by Capacitor : " + (injected || "not injected yet"),
     "env() from WebView    : " + envTop,
     "Used by page (--sat)  : " + used,
-    "  source              : " + source,
     "#status-fill height   : " + getComputedStyle(fill).height,
     "",
     "Android " + android + " · WebView " + webview,
