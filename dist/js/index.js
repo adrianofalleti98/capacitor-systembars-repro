@@ -1,14 +1,11 @@
 const COLORS = {
-  orange: "#e05402",
-  blue: "#1565C0"
+  orange: "#e05402"
 };
 
 const NAMES = {
-  orange: "orange",
-  blue: "blue"
+  orange: "orange"
 };
 
-const {SystemBars} = Capacitor.Plugins;
 
 
 function readEnvTop() {
@@ -33,9 +30,12 @@ function debugInfo() {
   const webview = (navigator.userAgent.match(/Chrome\/(\d+)/) || [])[1] || "?";
 
   const lines = [
-    "STATUS BAR (TOP INSET)",
-    "env() from WebView    : " + envTop,
-    "Used by page (--sat)  : " + used,
+    "DEBUG PANEL",
+    "\nFrom WebView:",
+    "env(safe-area-inset-top) = " + envTop,
+    "\nInjected from SystemBars.java: ",
+    "--safe-area-inset-top = " + used,
+    "\nRead from style.css",
     "#status-fill height   : " + getComputedStyle(fill).height,
     "",
     "Android " + android + " · WebView " + webview,
@@ -53,20 +53,9 @@ function setStatusBarColor(name) {
 document
   .getElementById("btn-orange")
   .addEventListener("click", async () => {
-  await SystemBars.setStyle({
-      style: "LIGHT",
-      bar: "StatusBar"
-    });
   setStatusBarColor("orange");
   });
 
-document.getElementById('btn-blue').addEventListener('click', async () => {
-  await SystemBars.setStyle({
-    style: "DARK",
-    bar: "StatusBar"
-  });
-  setStatusBarColor("blue")
-});
 
 window.addEventListener("load", () => {
   debugInfo();
