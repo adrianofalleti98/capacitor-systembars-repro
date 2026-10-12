@@ -1,13 +1,11 @@
 const COLORS = {
   orange: "#e05402",
-  blue: "#1565C0",
-   bodyColor: "#807816"
+  blue: "#1565C0"
 };
 
 const NAMES = {
   orange: "orange",
-  blue: "blue",
-  bodyColor: "body"
+  blue: "blue"
 };
 
 const {SystemBars} = Capacitor.Plugins;
@@ -28,19 +26,27 @@ function debugInfo() {
   const fill = document.getElementById("status-fill");
   const root = getComputedStyle(document.documentElement);
 
+  // Exact value written by Capacitor (SystemBars.java -> injectSafeAreaCSS) on <html> inline style
+  const injected = document.documentElement.style.getPropertyValue("--safe-area-inset-top").trim();
+  const envTop = readEnvTop();
+  const used = root.getPropertyValue("--sat").trim();
+  const source = injected ? "injected by Capacitor" : "env() fallback";
+
+  const android = (navigator.userAgent.match(/Android ([\d.]+)/) || [])[1] || "?";
+  const webview = (navigator.userAgent.match(/Chrome\/(\d+)/) || [])[1] || "?";
+
   const lines = [
-    "status-bar: " + getComputedStyle(fill).height,
-    "--sat: " + root.getPropertyValue("--sat"),
-    "env(): " + readEnvTop(),
-    "--safe-inset: " + root.getPropertyValue("--safe-area-inset-top"),
-    "Chrome WebView: " + ((navigator.userAgent.match(/Chrome\/(\d+)/) || [])[1] || "?"),
+    "STATUS BAR (TOP INSET)",
+    "Injected by Capacitor : " + (injected || "not injected yet"),
+    "env() from WebView    : " + envTop,
+    "Used by page (--sat)  : " + used,
+    "  source              : " + source,
+    "#status-fill height   : " + getComputedStyle(fill).height,
+    "",
+    "Android " + android + " · WebView " + webview,
   ];
 
   document.getElementById("debug").textContent = lines.join("\n");
-}
-
-async function init() {
-  debugInfo();
 }
 
 function setStatusBarColor(name) {
@@ -58,13 +64,6 @@ document
     });
   setStatusBarColor("orange");
   });
-
-document
-.getElementById("btn-refresh")
-.addEventListener("click",() => {
-init();
-setStatusBarColor("bodyColor");
-});
 
 document.getElementById('btn-blue').addEventListener('click', async () => {
   await SystemBars.setStyle({

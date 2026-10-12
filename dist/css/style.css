@@ -64,38 +64,20 @@ p {
 .btn.blue {
   background: #1565c0;
 }
+
+/* Pannello debug: testo piccolo, monospazio, leggibile sullo sfondo */
 .debug {
-    font-size: 2.1rem;
-
-}
-
-
-.barra-bassa {
-  display: flex;
-  flex-direction: column;
-  align-items: center;      /* niente più position: fixed, bottom, left, transform */
-  margin-top: auto;   /* spinge la barra in fondo a main */
-  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
-}
-
-.campo {
   margin: 0;
-  box-sizing: border-box;
-  width: 200px;
-  padding: 8px;
-  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
 }
 
-.quadratino {
-  width: 40px;
-  height: 40px;
-  background: blue;
-}
-
-
-.btn.white {
-    background: #2e7d32;
-}
 .btn:active {
   opacity: 0.8;
 }
